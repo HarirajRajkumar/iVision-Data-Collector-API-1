@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="images">
+    <file>Wificamera.png</file>
+    <file>Record.png</file>
+    <file>STOP.png</file>
+  </qresource>
+</RCC>

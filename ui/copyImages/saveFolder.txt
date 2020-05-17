@@ -1,0 +1,25 @@
+def checkCam(self):
+        camNo = self.lineEdit.text()
+        print(camNo)    
+        cap = cv2.VideoCapture(int(camNo))
+        #Pop up if
+        if not camNo:
+            QtWidgets.QMessageBox.about(self, "Camera Config Error ", "Camera IP Not Given ")
+            return  
+
+        while(cap.isOpened()):
+            ret, frame = cap.read()
+
+            cv2.imshow('frame',frame)
+            if cv2.waitKey(1) == 27:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
+        
+
+def select_Save_folder(self):
+        folder_path = QtWidgets.QFileDialog.getExistingDirectory(self,"Test","test")
+        print(folder_path)
+        if folder_path:
+            self.lineEdit_2.setText(folder_path)
