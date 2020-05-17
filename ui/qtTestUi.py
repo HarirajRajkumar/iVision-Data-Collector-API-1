@@ -87,7 +87,7 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
                 if cv2.contourArea(contour) < 2000: #if contour area is more than 2000px then store the image
                     continue
                 
-                self.imageNo = str(len(df))
+                self.imageNo = strw(len(df))
                 image.save(self.imageNo +'.jpg', "JPEG")   
                 df.loc[len(df)] = [datetime.datetime.now(), file_path]
 
