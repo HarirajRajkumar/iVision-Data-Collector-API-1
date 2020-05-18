@@ -56,8 +56,7 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
             self.camNo = self.lineEdit.text()
             print(self.camNo)     #''.join.locfile.read())
             self.lineEdit.setText(self.camNo)
-
-        cap = cv2.VideoCapture(self.camNo)   # Start VideoCapture at cv2
+            cap = cv2.VideoCapture(self.camNo)   # Start VideoCapture at cv2
 
         while(cap.isOpened()):          # while camera is opened read and show to live feed
             ret, frame = cap.read()
@@ -78,24 +77,30 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
             locfile.close()
     
     def start_ss(self):                 # Start screenshots if movement is detected #### Imported from C:\Motion Detection and store image
-        self.ss_camNo = self.camNo       # CAN be changed to self Variable from checkCam 'camNo'
-        print(self.ss_camNo)
+        #self.ss_camNo = self.camNo       # CAN be changed to self Variable from checkCam 'camNo'
+        #print(self.ss_camNo)
 
         ss_folder_path = self.lineEdit_2.text()     # Selected path to store the images
         print(ss_folder_path)
         
-        if not ss_folder_path:                      # If not entered shows error
-            QtWidgets.QMessageBox.about(self, "Choose Folder ", "Choose folder to store snapshots !!")
-       
+        self.ss_camNo = self.lineEdit.text()       # CAN be changed to self Variable from checkCam 'camNo'
+        print(self.ss_camNo)
+
+        if not ss_folder_path and self.ss_camNo == 'http://' or not self.lineEdit.text():                      # If not entered shows error
+            QtWidgets.QMessageBox.about(self, "Choose Folder ", "Choose folder to store snapshots or initialize camera!!")
+        else:
+            os.chdir(ss_folder_path)        # Changes working dir to provided user path to save images
+            self.cap = cv2.VideoCapture(self.ss_camNo)   # CAN be changed to self Variable from checkCam 'camNo'
+
+        ss_folder_path = self.lineEdit_2.text()     # Selected path to store the images
         print(ss_folder_path)
-        self.cap = cv2.VideoCapture(self.ss_camNo)   # CAN be changed to self Variable from checkCam 'camNo'
 
         ret, frame1 = self.cap.read() 
         ret, frame2 = self.cap.read() 
 
         df = pd.DataFrame(columns=['timestamp', 'img_path'])
 
-        os.chdir(ss_folder_path)        # Changes working dir to provided user path to save images
+        
 
         # When Camera is Opened
         while self.cap.isOpened():
