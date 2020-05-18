@@ -21,7 +21,8 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
         self.toolButton.clicked.connect(self.select_Save_folder)    #select saving folder
         self.pushButton_2.clicked.connect(self.start_ss)    # start taking snap shots
         self.pushButton_3.clicked.connect(self.ss_stop)     # stop taking snap shotss
-
+        self.pushButton_3.hide()
+        
     def checkCam(self): 
         self.camNo = self.lineEdit.text()    # read from lineEdit    # CAN be changed to self Variable
         print(self.camNo)                    # check camNo 
@@ -90,21 +91,28 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
                     continue
                 
                 self.imageNo = str(len(df))
+                self.lcdNumber.display(self.imageNo)
 
                 image.save(self.imageNo +'.jpg', "JPEG")   
                 df.loc[len(df)] = [datetime.datetime.now(), file_path]
 
             # show feed view
-            self.lcdNumber.display(self.imageNo)
-            cv2.imshow("feed", frame1)
+            
+            
+            cv2.imshow("Live Camera Taking Snapshots !!", frame1)
             frame1 = frame2
             ret, frame2 = self.cap.read()
+            self.pushButton_3.show()
+            self.pushButton_2.hide()
 
             if cv2.waitKey(1) == 27 :
                 print("Stopping")
                 break
                 
     def ss_stop(self):
+        self.pushButton_2.show()
+        self.pushButton_3.hide()
+
         cv2.destroyAllWindows()
         self.cap.release() 
         print(self.ss_camNo)
