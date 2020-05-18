@@ -1,4 +1,6 @@
 from PySide2 import QtWidgets
+from PySide2.QtWidgets import QWidget, QVBoxLayout
+from PySide2.QtGui import QPixmap
 from images import main
 import cv2 
 import pandas as pd
@@ -94,10 +96,6 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
 
             # show feed view
             self.lcdNumber.display(self.imageNo)
-
-
-            self.show()
-
             cv2.imshow("feed", frame1)
             frame1 = frame2
             ret, frame2 = self.cap.read()

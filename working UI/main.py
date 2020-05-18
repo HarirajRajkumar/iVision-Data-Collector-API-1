@@ -109,9 +109,9 @@ class Ui_MainWindow(object):
         self.label_9 = QLabel(self.centralwidget)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setGeometry(QRect(40, 250, 151, 16))
-        self.label_11 = QLabel(self.centralwidget)
-        self.label_11.setObjectName(u"label_11")
-        self.label_11.setGeometry(QRect(40, 280, 771, 351))
+        self.graphicsView = QGraphicsView(self.centralwidget)
+        self.graphicsView.setObjectName(u"graphicsView")
+        self.graphicsView.setGeometry(QRect(100, 280, 671, 341))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -146,6 +146,5 @@ class Ui_MainWindow(object):
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"CAMERA TESTING MODULE", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"DATA CAPTURE MODULE", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"SNAPSHOT VIEWER MODULE", None))
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
     # retranslateUi
 

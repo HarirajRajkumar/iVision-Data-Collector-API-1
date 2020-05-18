@@ -324,17 +324,14 @@
      <string>SNAPSHOT VIEWER MODULE</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_11">
+   <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>100</x>
       <y>280</y>
-      <width>771</width>
-      <height>351</height>
+      <width>671</width>
+      <height>341</height>
      </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
     </property>
    </widget>
   </widget>
