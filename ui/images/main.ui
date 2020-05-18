@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>852</width>
-    <height>286</height>
+    <width>854</width>
+    <height>281</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,7 +54,7 @@
        </rect>
       </property>
       <property name="text">
-       <string/>
+       <string>http://</string>
       </property>
       <property name="placeholderText">
        <string>Look at the DROIDCAM App. screen and populate the Camera URL here ...</string>
@@ -76,9 +76,9 @@
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>550</x>
-        <y>4</y>
-        <width>121</width>
+        <x>569</x>
+        <y>0</y>
+        <width>221</width>
         <height>41</height>
        </rect>
       </property>
@@ -103,25 +103,38 @@
        <string>Configure Camera</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_5">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>550</x>
-        <y>50</y>
-        <width>221</width>
-        <height>21</height>
+        <x>570</x>
+        <y>40</y>
+        <width>216</width>
+        <height>41</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Camera Feed will appear in seperate window</string>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Camera Feed will appear in seperate window</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>(press ESC to close the window)</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="Line" name="line_4">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>90</y>
+       <y>100</y>
        <width>801</width>
        <height>16</height>
       </rect>
@@ -204,7 +217,7 @@
       <property name="geometry">
        <rect>
         <x>685</x>
-        <y>42</y>
+        <y>40</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -244,6 +257,19 @@
         <normaloff>:/images/Record.png</normaloff>:/images/Record.png</iconset>
       </property>
      </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>574</x>
+        <y>90</y>
+        <width>221</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Camera Feed will appear in seperate window</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QLabel" name="label_8">
      <property name="geometry">
@@ -256,19 +282,6 @@
      </property>
      <property name="text">
       <string>in the chosen folder</string>
-     </property>
-    </widget>
-    <widget class="Line" name="line_5">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>210</y>
-       <width>801</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </widget>
@@ -298,13 +311,26 @@
      <string>DATA CAPTURE MODULE</string>
     </property>
    </widget>
+   <widget class="Line" name="line_5">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>230</y>
+      <width>801</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>852</width>
+     <width>854</width>
      <height>21</height>
     </rect>
    </property>
