@@ -10,7 +10,7 @@ from PIL import Image
 import os
 
 app_name = 'iVision Data Collector'
-app_version = '1.0.0'
+app_version = '1.1.0'
 
 httpfile= open("httpSet.txt","a")
 locfile = open("LocSet.txt","a")
@@ -144,11 +144,6 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
         cv2.destroyAllWindows()
         self.cap.release() 
         print(self.ss_camNo)
-    
-    #def updateLCD(self):
-        #print(int(self.imageNo))
-        #self.lcdNumber.display()
-
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication()
