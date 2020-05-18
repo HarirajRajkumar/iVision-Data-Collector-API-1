@@ -32,7 +32,7 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
         while(cap.isOpened()):          # while camera is opened read and show to live feed
             ret, frame = cap.read()
 
-            cv2.imshow('frame',frame)
+            cv2.imshow('TESTING CAMERA - Press escape to CLOSE',frame)
             if cv2.waitKey(1) == 27 :   # if escape is pressed !! MUST BE CHANGED TO WHEN Window 'X' is pressed !!
                 break
 
@@ -87,11 +87,17 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
                 if cv2.contourArea(contour) < 2000: #if contour area is more than 2000px then store the image
                     continue
                 
-                self.imageNo = strw(len(df))
+                self.imageNo = str(len(df))
+
                 image.save(self.imageNo +'.jpg', "JPEG")   
                 df.loc[len(df)] = [datetime.datetime.now(), file_path]
 
             # show feed view
+            self.lcdNumber.display(self.imageNo)
+
+
+            self.show()
+
             cv2.imshow("feed", frame1)
             frame1 = frame2
             ret, frame2 = self.cap.read()
@@ -104,6 +110,10 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
         cv2.destroyAllWindows()
         self.cap.release() 
         print(self.ss_camNo)
+    
+    #def updateLCD(self):
+        #print(int(self.imageNo))
+        #self.lcdNumber.display()
 
 
 if __name__ == '__main__':
