@@ -20,7 +20,7 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
         super(MyQtApp,self).__init__()
         self.setupUi(self)
         self.setWindowTitle(app_name+' '+app_version)   # pop up main window with app name and version
-        self.pushButton.clicked.connect(self.checkCam)  # check cam if connected
+        #self.pushButton.clicked.connect(self.checkCam)  # check cam if connected
         self.pushButton_2.clicked.connect(self.start_ss)    # start taking snap shots
         self.pushButton_3.clicked.connect(self.ss_stop)     # stop taking snap shotss
         self.pushButton_3.hide()
@@ -30,24 +30,34 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
         locfile.close()
 
         httpfile = open("httpSet.txt","r")        # ALWAYS READ AND CLOSE 
-        self.locFileData = httpfile.read()
+        self.httpFileData = httpfile.read()
         httpfile.close()
+
+        if not self.httpFileData:                 # Appending http camera link
+            self.pushButton.clicked.connect(self.checkCam)  
+        else: 
+            print(self.httpFileData)
+            self.lineEdit.setText(self.httpFileData)
 
         if not self.locFileData : # if nothing present in lock file get data from user
             self.toolButton.clicked.connect(self.select_Save_folder)    #select saving folder
         elif self.locFileData :   # else if present append to that text line 
             print(self.locFileData)     #''.join.locfile.read())
             self.lineEdit_2.setText(self.locFileData)
-            
 
     def checkCam(self): 
-        self.camNo = self.lineEdit.text()    # read from lineEdit    # CAN be changed to self Variable
-        print(self.camNo)                    # check camNo 
-        cap = cv2.VideoCapture(self.camNo)   # Start VideoCapture at cv2
+        #self.camNo = self.lineEdit.text()    # read from lineEdit    # CAN be changed to self Variable
+        #print(self.camNo)                    # check camNo 
 
-        if not self.camNo:                   # if cam not given
+        if self.lineEdit.text() == 'http://' or not self.lineEdit.text():                   # if cam not given
             QtWidgets.QMessageBox.about(self, "Camera Config Error ", "Camera IP Not Given ")
             return  
+        else:
+            self.camNo = self.lineEdit.text()
+            print(self.camNo)     #''.join.locfile.read())
+            self.lineEdit.setText(self.camNo)
+
+        cap = cv2.VideoCapture(self.camNo)   # Start VideoCapture at cv2
 
         while(cap.isOpened()):          # while camera is opened read and show to live feed
             ret, frame = cap.read()
