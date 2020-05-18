@@ -12,17 +12,34 @@ import os
 app_name = 'iVision Data Collector'
 app_version = '1.0.0'
 
+httpfile= open("httpSet.txt","a")
+locfile = open("LocSet.txt","a")
+
 class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
     def __init__(self):
         super(MyQtApp,self).__init__()
         self.setupUi(self)
         self.setWindowTitle(app_name+' '+app_version)   # pop up main window with app name and version
         self.pushButton.clicked.connect(self.checkCam)  # check cam if connected
-        self.toolButton.clicked.connect(self.select_Save_folder)    #select saving folder
         self.pushButton_2.clicked.connect(self.start_ss)    # start taking snap shots
         self.pushButton_3.clicked.connect(self.ss_stop)     # stop taking snap shotss
         self.pushButton_3.hide()
         
+        locfile = open("LocSet.txt","r")        # ALWAYS READ AND CLOSE 
+        self.locFileData = locfile.read()
+        locfile.close()
+
+        httpfile = open("httpSet.txt","r")        # ALWAYS READ AND CLOSE 
+        self.locFileData = httpfile.read()
+        httpfile.close()
+
+        if not self.locFileData : # if nothing present in lock file get data from user
+            self.toolButton.clicked.connect(self.select_Save_folder)    #select saving folder
+        elif self.locFileData :   # else if present append to that text line 
+            print(self.locFileData)     #''.join.locfile.read())
+            self.lineEdit_2.setText(self.locFileData)
+            
+
     def checkCam(self): 
         self.camNo = self.lineEdit.text()    # read from lineEdit    # CAN be changed to self Variable
         print(self.camNo)                    # check camNo 
@@ -46,8 +63,10 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
         folder_path = QtWidgets.QFileDialog.getExistingDirectory(self,"Test","test")
         if folder_path:
             self.lineEdit_2.setText(folder_path)
-
-
+            locfile = open("LocSet.txt","w")        # Saving the folder path to the file
+            locfile.write(folder_path)
+            locfile.close()
+    
     def start_ss(self):                 # Start screenshots if movement is detected #### Imported from C:\Motion Detection and store image
         self.ss_camNo = self.camNo       # CAN be changed to self Variable from checkCam 'camNo'
         print(self.ss_camNo)
@@ -67,7 +86,6 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
         df = pd.DataFrame(columns=['timestamp', 'img_path'])
 
         os.chdir(ss_folder_path)        # Changes working dir to provided user path to save images
-            
 
         # When Camera is Opened
         while self.cap.isOpened():
@@ -97,7 +115,7 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
                 df.loc[len(df)] = [datetime.datetime.now(), file_path]
 
             # show feed view
-            
+            #self.L = [self.camNo, ss_folder_path]
             
             cv2.imshow("Live Camera Taking Snapshots !!", frame1)
             frame1 = frame2
