@@ -57,6 +57,10 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
             print(self.camNo)     #''.join.locfile.read())
             self.lineEdit.setText(self.camNo)
             cap = cv2.VideoCapture(self.camNo)   # Start VideoCapture at cv2
+            httpFileData = open("httpSet.txt","w")        # Saving the folder path to the file
+            httpFileData.write(self.camNo)
+            httpFileData.close()
+
 
         while(cap.isOpened()):          # while camera is opened read and show to live feed
             ret, frame = cap.read()
