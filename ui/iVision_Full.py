@@ -193,6 +193,7 @@ class MyQtApp(main.Ui_MainWindow,QtWidgets.QMainWindow):
         if not self.locFileData : # if nothing present in lock file get data from user
             self.toolButton.clicked.connect(self.select_Save_folder)    #select saving folder
         elif self.locFileData :   # else if present append to that text line 
+            self.toolButton.clicked.connect(self.select_Save_folder)
             print(self.locFileData)     #''.join.locfile.read())
             self.lineEdit_2.setText(self.locFileData)
 
