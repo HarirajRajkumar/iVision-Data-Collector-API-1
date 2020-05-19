@@ -1,4 +1,4 @@
-"# iVision-Data-Collector-API-1" 
+## iVision-Data-Collector-API-1
 
 This API Enables you to collect images when a motion is triggered.
 The input feed is given from IP Cam or Device Cam.
@@ -33,3 +33,22 @@ Crawling across the camera frame in disguise
 4. It will be better to provide at least 400 to 500 Snapshots per scenario for
 proper AI training
 5. Try to give a much as possible diversified scenarios for a better AI training
+
+
+Steps to execute:
+1. Install DROIDCAM APP (free version from Playstore) in your Android mobile
+phone (this will convert your mobile phone to a wireless web camera)
+2. Connect your Android phone to your home Wi-Fi router.
+3. Download iVision Data Collector 1.1.1.exe to your Windows Laptop 
+4. Install the IVISION DATA COLLECTOR windows application in your laptop.
+5. Connect your Windows LAPTOP to your home Wi-Fi router.
+6. Click iVision Data Collector 1.1.1.exe in the directory in which you have
+installed the application to invoke the application
+7. Click DROIDCAM app in your Android Phone
+8. Use IVISION DATA COLLECTOR inbuilt TEST CAMERA option to test camera
+and laptop video streaming connectivity.
+9. Create Multiple (say one folder for one scenario) directories in your Laptop
+10.Use the IVISION DATA COLLECTOR tool to choose the directories one by
+one and start taking the data, while acting in the front of the mobile phone
+camera with various disguise
+
